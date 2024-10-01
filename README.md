@@ -53,3 +53,12 @@
     1. Go to your forked repository
     2. click contribute
     3. click create pull request
+
+- **COLOR PALETTE**
+    - LIGHT MODE:
+        Primary: #F0ECE5
+        Secondary: #161A30
+    
+    - DARK MODE:
+        Primary: #161A30
+        Secondary: #F0ECE5 or #B6BBC4
