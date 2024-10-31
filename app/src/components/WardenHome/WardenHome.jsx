@@ -1,6 +1,6 @@
-import { Link } from "react-router-dom";
-import './WardenHome.css';
-import PropTypes from 'prop-types';
+import { Link } from "react-router-dom"
+import './WardenHome.css'
+import PropTypes from 'prop-types'
 
 const WardenHome = (props) => {
     return (
@@ -28,7 +28,7 @@ const WardenHome = (props) => {
                         </div>
                     </div>
 
-                    <span className="wrd-table-cap">Hostel History</span> {/* hostelname instead of hostel */}
+                    <span className="wrd-table-cap">{props.hostel} History</span> {/* hostelname instead of hostel */}
                     <div className="wrd-record"> {/*TODO */}
                         <table className="wrd-record-table" border={"2px solid black"}>
                             <thead>
@@ -66,7 +66,8 @@ const WardenHome = (props) => {
 
 WardenHome.propTypes = {
     name: PropTypes.string.isRequired,
-    userID: PropTypes.string.isRequired
+    userID: PropTypes.string.isRequired,
+    hostel: PropTypes.string.isRequired
 }
 
 export default WardenHome;

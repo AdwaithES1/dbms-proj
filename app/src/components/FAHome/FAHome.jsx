@@ -1,7 +1,7 @@
-import { Link } from "react-router-dom";
-import './FAHome.css';
-import PropTypes from 'prop-types';
-import { useState } from "react";
+import { Link } from "react-router-dom"
+import './FAHome.css'
+import PropTypes from 'prop-types'
+import { useState } from "react"
 
 const FAHome = (props) => {
     const [table1Index, setTable1Index] = useState(true);

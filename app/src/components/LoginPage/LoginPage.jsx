@@ -1,8 +1,8 @@
 import { useState } from "react"
 import axios from "axios" 
 import './LoginPage.css'
-import { useNavigate } from "react-router-dom";
-import PropTypes from 'prop-types';
+import { useNavigate } from "react-router-dom"
+import PropTypes from 'prop-types'
 
 // WE ALSO HAVE TO ADD A MAIN USER WHICH HAS ACCESS TO ENTIRE HISTORY
 function LoginPage(props) {
