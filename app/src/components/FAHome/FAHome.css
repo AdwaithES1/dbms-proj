@@ -1,0 +1,114 @@
+.f-home-container {
+    flex-direction: column;
+    
+    width: 80%;
+    height: fit-content;
+    margin: 0 auto;
+    padding-top: 3rem;
+    gap: 4rem;
+
+    font-size: clamp(0.3rem, 3vw, 0.8rem);
+}
+
+.f-header {
+    height: fit-content;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.f-logout-btn {
+    background-color: rgb(151, 9, 9);
+    width: clamp(80px, 10vw ,120px);
+    height: clamp(15px, 10vw, 40px);
+
+    border-radius: 8px;
+    font-weight: 600;
+}
+
+
+.f-navbar {
+    justify-content: space-between;
+    height: fit-content;
+    width: 100%;
+}
+
+.f-profile {
+    background-color: #161A30;
+
+    padding: 2% 3%;
+    border-radius: 15px;
+}
+
+.f-profile-content {  
+    height: fit-content;
+    gap: 1rem;
+}
+
+.f-output {
+    width: 100%;
+}
+
+
+.f-record {
+    background-color: #161A30;
+    color: #F0ECE5;
+    width: 100%;
+    height: fit-content;
+
+    border-top-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.f-switch-btns {
+    height: fit-content;
+    width: fit-content;
+    
+    margin-left: 0.5px;
+    gap: 1px;
+}
+
+.f-curr_req, .f-std_hist {
+    position: relative;
+    background-color: #161A30;
+    width: 200px;
+    height: 2.5rem;
+
+    text-align: center;
+    font-weight: 600;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.f-curr_req:hover, .f-std_hist:hover {
+    background-color: #29315d;
+    cursor: pointer;
+}
+
+.f-curr_req {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.f-std_hist {
+    border-top-right-radius: 10px;
+    margin-left: -10px;
+}
+
+.f-record-table {
+    width: 100%;
+    
+    border: 1px solid #F0ECE5; 
+    border-collapse: collapse;
+
+    font-size: 1rem;
+    text-align: center;
+}
+
+.f-record-table tr {
+    height: 2.5rem;
+
+}

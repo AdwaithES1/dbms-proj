@@ -15,7 +15,7 @@ body {
   align-items: center;
 }
 
-.link {
+[class*="link"] {
     text-decoration: none;
     color: inherit;
 }

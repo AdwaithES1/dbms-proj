@@ -1,63 +1,36 @@
 import { Link } from "react-router-dom";
-import './StudentHome.css'
-import StudentModal from "../StudentModal/StudentModal";
-import { useEffect, useState } from "react";
-import axios from "axios";
-import PropTypes from 'prop-types'
+import './WardenHome.css';
+import PropTypes from 'prop-types';
 
-const StudentHome = (props) => {
-    const [modal, setModal] = useState(false);
-
-    const fetchUser = async () => {
-        await axios.get("http://localhost:5000/api/student/home")
-        .then(result => {
-            console.log(result); //testing
-        })
-        .catch(err => console.error(err));
-    }
-    useEffect(() => {
-        fetchUser();
-    })
-    
-    const toggleModal = () => {
-        setModal(!modal);
-    }
+const WardenHome = (props) => {
     return (
         <> 
-            <div className="std-home-wrapper">
-                {modal && 
-                    <StudentModal toggleModal={toggleModal}/>
-                }
-
-                <div className="std-home-container flex">
-                    <div className="std-header flex">
+            <div className="wrd-home-wrapper">
+                <div className="wrd-home-container flex">
+                    <div className="wrd-header flex">
                         <img src="../../public/favicon.ico" width={"50px"}/>
-                        <div className="std-logout-btn flex">
-                            <Link to="/" className="std-link">
+                        <div className="wrd-logout-btn flex">
+                            <Link to="/" className="link">
                                     <i className="fa-solid fa-arrow-right-from-bracket"></i>
                                     <span>&nbsp;&nbsp;Log Out</span>
                             </Link>
                         </div>
                     </div>
-                    <div className="std-navbar flex">
-                        <div className="std-profile">
-                            <div className="std-profile-content flex">
+                    <div className="wrd-navbar flex">
+                        <div className="wrd-profile">
+                            <div className="wrd-profile-content flex">
                                 <i className="fa-solid fa-user fa-2xl" style={{color: "#ffffff;"}}></i>
-                                <div className="std-profile-text">
+                                <div className="wrd-profile-text">
                                     <span><b>{props.name}</b></span><br />
                                     <span>{props.userID}</span>
                                 </div>
                             </div>
                         </div>
-                        <div className="std-req-btn flex"  onClick={toggleModal}>
-                            <i className="fa-solid fa-plus fa-sm"></i>
-                            <span>New Request</span>
-                        </div> 
                     </div>
 
-                    <span className="std-table-cap">Your Requests</span>
-                    <div className="std-record"> {/*TODO */}
-                        <table className="std-record-table" border={"2px solid black"}>
+                    <span className="wrd-table-cap">Hostel History</span> {/* hostelname instead of hostel */}
+                    <div className="wrd-record"> {/*TODO */}
+                        <table className="wrd-record-table" border={"2px solid black"}>
                             <thead>
                                 <tr>
                                     <th>Date</th>
@@ -91,9 +64,9 @@ const StudentHome = (props) => {
     )
 }
 
-StudentHome.propTypes = {
+WardenHome.propTypes = {
     name: PropTypes.string.isRequired,
     userID: PropTypes.string.isRequired
 }
 
-export default StudentHome;
+export default WardenHome;
