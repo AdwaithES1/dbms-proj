@@ -2,6 +2,8 @@ import { Link } from "react-router-dom"
 import './FAHome.css'
 import PropTypes from 'prop-types'
 import { useState } from "react"
+import CurrentRequests from "./CurrentRequests/CurrentRequests"
+import StudentHistory from "./StudentHistory/StudentHistory"
 
 const FAHome = (props) => {
     const [table1Index, setTable1Index] = useState(true);
@@ -32,7 +34,7 @@ const FAHome = (props) => {
                     <div className="f-navbar flex">
                         <div className="f-profile">
                             <div className="f-profile-content flex">
-                                <i className="fa-solid fa-user fa-2xl" style={{color: "#ffffff;"}}></i>
+                                <i className="fa-solid fa-user fa-2xl" style={{color: "#ffffff"}}></i>
                                 <div className="f-profile-text">
                                     <span><b>{props.name}</b></span><br />
                                     <span>{props.userID}</span>
@@ -43,65 +45,13 @@ const FAHome = (props) => {
 
                     <div className="f-output">
                         <div className="f-switch-btns flex">
-                            <div className="f-curr_req" onClick={handleTable1Index}>Current Requests</div>
-                            <div className="f-std_hist"onClick={handleTable2Index}>Student History</div>
+                            <div className="f-curr_req" onClick={handleTable1Index} style={{backgroundColor: table1Index ? "#161A30" :  "#29315d"}}>Current Requests</div>
+                            <div className="f-std_hist"onClick={handleTable2Index} style={{backgroundColor: table2Index ? "#161A30" :  "#29315d" , zIndex: table2Index ? "2" : "0" }}>Student History</div>
                         </div>
                         <div className="f-record"> {/*TODO */}
-                            { table1Index && <table className="f-record-table f-table-req" border={"2px solid black"}>
-                                <thead>
-                                    <tr>
-                                        <th>Date</th>
-                                        <th>Purpose</th>
-                                        <th>Time Out</th>
-                                        <th>Time In</th>
-                                        <th>Number of Days</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>dwdaw</td>
-                                        <td>dwdaw</td>
-                                        <td>dwdaw</td>
-                                        <td>dwdaw</td>
-                                        <td>dwdaw</td>
-                                    </tr>
-                                    <tr>
-                                        <td>dwdaw</td>
-                                        <td>dwdaw</td>
-                                        <td>dwdaw</td>
-                                        <td>dwdaw</td>
-                                        <td>dwdaw</td>
-                                    </tr>
-                                </tbody>
-                            </table> }
+                            { table1Index && <CurrentRequests faID={props.userID} options={props.options} handleStatusColor={props.handleStatusColor}/> }
 
-                            { table2Index && <table className="f-record-table f-table-hist" border={"2px solid black"}>
-                                <thead>
-                                    <tr>
-                                        <th>Date</th>
-                                        <th>Purpose</th>
-                                        <th>Time Out</th>
-                                        <th>Time In</th>
-                                        <th>Number of Days</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>12345</td>
-                                        <td>12345</td>
-                                        <td>12345</td>
-                                        <td>12345</td>
-                                        <td>12345</td>
-                                    </tr>
-                                    <tr>
-                                        <td>12345</td>
-                                        <td>12345</td>
-                                        <td>12345</td>
-                                        <td>12345</td>
-                                        <td>12345</td>
-                                    </tr>
-                                </tbody>
-                            </table>}
+                            { table2Index && <StudentHistory faID={props.userID} options={props.options} handleStatusColor={props.handleStatusColor}/>}
                         </div>
                     </div>
                 </div>
@@ -112,7 +62,9 @@ const FAHome = (props) => {
 
 FAHome.propTypes = {
     name: PropTypes.string.isRequired,
-    userID: PropTypes.string.isRequired
+    userID: PropTypes.string.isRequired,
+    options: PropTypes.string.isRequired,
+    handleStatusColor: PropTypes.func.isRequired
 }
 
 export default FAHome;

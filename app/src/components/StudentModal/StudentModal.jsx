@@ -72,7 +72,7 @@ const StudentModal = (props) => {
                                 <input type="datetime-local" id="enddate" name="enddate" onChange={(e) => setEndDate(e.target.value)} min={minDate}required></input> <br/><br/>
 
                                 <label htmlFor="workDays">Number Of Working Days</label> <br/>
-                                <input type="number" id="workDays" name="workDays" placeholder="Enter your Mobile number" minLength={10} maxLength={10} onChange={(e) => setWorkDays(e.target.value)} required></input> <br/><br/>
+                                <input type="number" id="workDays" name="workDays" placeholder="Enter Number Of Working Days" maxLength={2} onChange={(e) => setWorkDays(e.target.value)} required></input> <br/><br/>
 
                                 <div className="checkbox-container flex">
                                     <input type="checkbox" name="validate" id="validate" required></input>

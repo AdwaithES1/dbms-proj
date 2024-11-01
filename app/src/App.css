@@ -19,3 +19,29 @@ body {
     text-decoration: none;
     color: inherit;
 }
+
+.sort-btn:active {
+    background-color: #343a5e;
+}
+
+table {
+    border: none;
+    border-collapse: collapse;
+}
+
+th, td {
+    border-bottom: 1px solid #F0ECE5;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+
+    padding-inline: 1rem;
+}
+
+th {
+    border-bottom: 2px solid #F0ECE5;
+}
+
+td {
+    height: 4rem;
+}

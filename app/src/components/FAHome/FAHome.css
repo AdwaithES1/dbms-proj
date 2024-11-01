@@ -81,28 +81,30 @@
     align-items: center;
     justify-content: center;
 
-}
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}   
 
 .f-curr_req:hover, .f-std_hist:hover {
-    background-color: #29315d;
     cursor: pointer;
 }
 
 .f-curr_req {
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
+    z-index: 2;
+    padding-right: 20px;
 }
 
 .f-std_hist {
-    border-top-right-radius: 10px;
-    margin-left: -10px;
+    margin-left: -20px;
+    padding-left: 20px;
+}
+
+.f-record {
+    margin-left: 0.5px;
 }
 
 .f-record-table {
     width: 100%;
-    
-    border: 1px solid #F0ECE5; 
-    border-collapse: collapse;
 
     font-size: 1rem;
     text-align: center;
