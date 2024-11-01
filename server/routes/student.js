@@ -5,7 +5,7 @@ const router = express.Router();
 
 // ROUTE 1: /api/student/addreq
 router.post("/addreq", async (req, res) => {
-    const { address, reason, startDate, endDate, workDays, sid } = req.body;
+    const { address, reason, startDate, endDate, workDays, sid} = req.body;
     console.log("User Input Application Form: ", req.body);
 
     try {
@@ -21,7 +21,7 @@ router.post("/addreq", async (req, res) => {
                 no_of_working_days: workDays,
                 student_id: sid,
             }
-        ]);
+        ])
 
         if (error) {
             console.error("Error inserting into applications:", error);
@@ -38,7 +38,7 @@ router.post("/addreq", async (req, res) => {
 
 // ROUTE 2: /api/student/fetchreq
 router.post("/fetchreq", async (req, res) => {
-    const { userID } = req.body;
+    const { userID, order } = req.body;
     console.log("userid", userID);
 
     // FETCHING FROM DATABASE
@@ -46,7 +46,8 @@ router.post("/fetchreq", async (req, res) => {
         const { data, error } = await db
         .from('application')
         .select('app_no, start_date, end_date, reason, no_of_working_days, app_status')
-        .eq('student_id', userID);
+        .eq('student_id', userID)
+        .order('start_date', {ascending: order});
 
         console.log(data)
 

@@ -8,7 +8,7 @@ import PropTypes from 'prop-types'
 const StudentHome = (props) => {
     const [modal, setModal] = useState(false);
     const [appData, setAppData] = useState([]);
-
+    const [order, setOrder] = useState(true); //if order true, then sorting in ascending order
 
     //DATE SETUP OPTIONS
     const options = {
@@ -29,10 +29,14 @@ const StudentHome = (props) => {
         else if (s === "Late") return "#FFC107"; // Warning yellow
     };
     
+    // SET SORTING ORDER
+    const handleOrder = () => {
+        setOrder(!order);
+    }
 
-    const fetchUser = async (userID) => { //used to fetch the application history
+    const fetchUser = async (userID, order) => { //used to fetch the application history
 
-        await axios.post("http://localhost:5000/api/student/fetchreq", { userID })
+        await axios.post("http://localhost:5000/api/student/fetchreq", { userID: userID, order: order})
         .then(result => {
             console.log(result); //testing
             setAppData(result.data);
@@ -42,9 +46,9 @@ const StudentHome = (props) => {
 
     useEffect(() => {
         if (props.userID) {
-            fetchUser(props.userID);
+            fetchUser(props.userID, order);
         }
-    }, [props.userID]);
+    }, [props.userID, order]);
     
     const toggleModal = () => {
         setModal(!modal);
@@ -91,7 +95,11 @@ const StudentHome = (props) => {
                             <thead>
                                 <tr>
                                     <th>App No.</th>
-                                    <th>Start Date</th>
+                                    <th onClick={handleOrder}>
+                                        Start Date &nbsp;&nbsp; 
+                                        {(order) ? <i className="fa-solid fa-caret-up fa-xs" style={{color: "#f0ece5;"}}></i>
+                                           : <i className="fa-solid fa-caret-down fa-xs" style={{color: "#f0ece5;"}}></i>}
+                                    </th>
                                     <th>End Date</th>
                                     <th>Reason</th>
                                     <th>Working Days</th>

@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import './StudentModal.css'
 import axios from "axios"
 import PropTypes from 'prop-types'
@@ -9,7 +9,18 @@ const StudentModal = (props) => {
     const [reason, setReason] = useState("");
     const [startDate, setStartDate] = useState(null);
     const [endDate, setEndDate] = useState(null);
+    const [minDate, setMinDate] = useState(null);
 
+    useEffect((e = 0) => {
+        const now = new Date();
+        const year = now.getFullYear();
+        const month = String(now.getMonth() + 1).padStart(2, '0'); // Months are zero-indexed
+        const day = String(now.getDate() + e).padStart(2, '0');
+        const hours = String(now.getHours()).padStart(2, '0');
+        const minutes = String(now.getMinutes()).padStart(2, '0');
+        const formattedNow = `${year}-${month}-${day}T${hours}:${minutes}`;
+        setMinDate(formattedNow);
+    }, []);
 
     const createReq = async (e) => {
         e.preventDefault();
@@ -19,7 +30,7 @@ const StudentModal = (props) => {
             startDate: startDate,
             endDate: endDate,
             workDays: workDays,
-            sid: props.userID
+            sid: props.userID,
         }
 
         try {
@@ -55,10 +66,10 @@ const StudentModal = (props) => {
                                 <input type="text" id="reason" name="reason" placeholder="Enter your Reason" maxLength={50} onChange={(e) => setReason(e.target.value)} required></input> <br/><br/>
 
                                 <label htmlFor="startdate">Start Date</label> <br/>
-                                <input type="datetime-local" id="startdate" name="startdate" onChange={(e) => setStartDate(e.target.value)} required></input> <br/><br/>
+                                <input type="datetime-local" id="startdate" name="startdate" onChange={(e) => setStartDate(e.target.value)} min={minDate} required></input> <br/><br/>
                             
                                 <label htmlFor="enddate">End Date</label> <br/>
-                                <input type="datetime-local" id="enddate" name="enddate" onChange={(e) => setEndDate(e.target.value)} required></input> <br/><br/>
+                                <input type="datetime-local" id="enddate" name="enddate" onChange={(e) => setEndDate(e.target.value)} min={minDate}required></input> <br/><br/>
 
                                 <label htmlFor="workDays">Number Of Working Days</label> <br/>
                                 <input type="number" id="workDays" name="workDays" placeholder="Enter your Mobile number" minLength={10} maxLength={10} onChange={(e) => setWorkDays(e.target.value)} required></input> <br/><br/>
