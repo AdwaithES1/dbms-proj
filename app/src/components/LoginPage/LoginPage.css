@@ -68,7 +68,11 @@
     opacity: 80%;
 }
 
-@media screen and (min-width: 360px) { /* Device: Tablet & Desktop*/
+@media screen and (min-width: 400px) { /* Device: Tablet & Desktop*/
+    
+    .login-container {
+        height: 90vh;
+    }
 
     .login-box {
         height: 395px;

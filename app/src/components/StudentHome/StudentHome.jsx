@@ -36,6 +36,20 @@ const StudentHome = (props) => {
         }
     }, [props.userID, order]);
 
+    // Disable body scroll when modal is open
+    useEffect(() => {
+        if (modal) {
+            document.body.style.overflow = "hidden";
+        } else {
+            document.body.style.overflow = "unset"; // Reset to default
+        }
+
+        // Clean up the effect on unmount
+        return () => {
+            document.body.style.overflow = "unset";
+        };
+    }, [modal]);
+
     const toggleModal = () => {
         setModal(!modal);
         fetchUser(props.userID);
@@ -153,7 +167,7 @@ const StudentHome = (props) => {
 StudentHome.propTypes = {
     name: PropTypes.string.isRequired,
     userID: PropTypes.string.isRequired,
-    options: PropTypes.string.isRequired,
+    options: PropTypes.object.isRequired,
     handleStatusColor: PropTypes.func.isRequired,
     onLogout: PropTypes.func
 };

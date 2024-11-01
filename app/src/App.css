@@ -6,6 +6,12 @@
 
 body {
   margin: 0 auto;
+
+  padding-bottom: 1rem;
+}
+
+a:visited, a:link {
+    color: inherit;
 }
 
 .flex {
@@ -44,4 +50,14 @@ th {
 
 td {
     height: 4rem;
+}
+
+footer {
+    padding-top: 3rem;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.github-icon:hover {
+    cursor: pointer;
 }

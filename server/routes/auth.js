@@ -42,18 +42,4 @@ router.post("/login", async (req, res) => {
     }
 });
 
-//PROBABLY WONT BE REQUIRED
-// //ROUTE 2: /api/auth/getuser
-// router.get("/getuser", async (req, res) => {
-//     try {
-//         q = "SELECT * FROM users WHERE password = '$2a$10$zHIeiFKAi1Ij8IVD1.T0mOplA4ohaK6GpHdeoc7CuxIXaP/m02z6.';";
-//         const [rows] = await db.query(q);
-//         res.json(rows);
-
-//         console.log(rows) //testing
-//     } catch (err) {
-//         console.error("Error: ", err);
-//     }
-// });
-
 module.exports = router;

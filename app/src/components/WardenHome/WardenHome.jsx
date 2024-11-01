@@ -2,9 +2,13 @@ import { Link } from "react-router-dom"
 import './WardenHome.css'
 import PropTypes from 'prop-types'
 import { useState } from "react"
+import axios from "axios"
 
 const WardenHome = (props) => {
-    const [hostel, setHostel] = useState("Hostel");
+    // const fetchHostelDetails = async () => {
+    //     await axios.post()
+    // }
+
     return (
         <> 
             <div className="wrd-home-wrapper">

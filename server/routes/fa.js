@@ -26,8 +26,6 @@ router.post("/curreq", async (req, res) => {
         .eq('app_status', 'Pending')
         .order('start_date', {ascending: order});
 
-        console.log(result2);
-        
         if (err1 || err2) {
             console.error("Error fetching applications:", err1 || err2);
             return res.status(500).json({ error: "Failed to fetch requests" });
@@ -54,8 +52,9 @@ router.post("/setstatus", async (req, res) => {
         .update({ app_status: status})
         .eq('app_no', appNo);
 
-        console.log(req.body)
-        console.log(data);
+        console.log(req.body); //testing
+        console.log(data); //testing
+
     } catch(err) {
         console.error("Unexpected error:", err);
         return res.status(500).json({ error: "An unexpected error occurred" });

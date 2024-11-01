@@ -60,6 +60,10 @@ function App() {
                     <Route exact path="/admin/home" element={<AdminHome  name={name} userID={userID} onLogOut={handleLogOut} handleStatusColor={handleStatusColor} options={options}/>}/>
                 </Routes>
             </Router>
+
+            <footer>
+                <span style={{color: "#161A30"}}>&#169;&nbsp;Leave Management System &nbsp;<a href="https://github.com/nakul-krishnakumar/dbms-proj" target="_blank"><i className="fa-brands fa-github fa-xl github-icon" style={{color: "#161a3"}}></i></a></span>
+            </footer>
         </div>
     )
 }

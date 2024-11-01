@@ -13,17 +13,6 @@ const StudentHistory = (props) => {
         })
     } 
 
-    //DATE SETUP OPTIONS
-    const options = {
-        year: "numeric",
-        month: "short",
-        day: "numeric",
-        hour: "numeric",
-        minute: "2-digit",
-        hour12: true, // Use 12-hour clock
-    };
-
-
     const handleOrder = () => {
         setOrder(!order);
     }
@@ -69,12 +58,12 @@ const StudentHistory = (props) => {
                         <td>
                             {new Date(
                                 e.start_date
-                            ).toLocaleString("en-US", options)}
+                            ).toLocaleString("en-US", props.options)}
                         </td>
                         <td>
                             {new Date(
                                 e.end_date
-                            ).toLocaleString("en-US", options)}
+                            ).toLocaleString("en-US", props.options)}
                         </td>
                         <td>{e.reason}</td>
                         <td>{e.leave_addr}</td>

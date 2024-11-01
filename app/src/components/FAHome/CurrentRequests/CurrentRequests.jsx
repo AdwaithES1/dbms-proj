@@ -120,7 +120,7 @@ const CurrentRequests = (props) => {
 
 CurrentRequests.propTypes = {
     faID: PropTypes.string.isRequired,
-    options: PropTypes.string.isRequired
+    options: PropTypes.object.isRequired
 }
 
 export default CurrentRequests;

@@ -1,8 +1,30 @@
 import { Link } from "react-router-dom"
 import './AdminHome.css'
 import PropTypes from 'prop-types'
+import axios from "axios"
+import { useEffect, useState } from "react"
 
 const AdminHome = (props) => {
+    const [order, setOrder] = useState(true);
+    const [appData, setAppData] = useState([]);
+
+    const fetchAllDetails = async (order) => {
+        await axios.post("http://localhost:5000/api/admin/fetchall", { order: order })
+        .then(result => {
+            console.log(result);
+            setAppData(result.data);
+        })
+    }
+
+    const handleOrder = () => {
+        setOrder(!order);
+    }
+
+    useEffect(() => {
+          fetchAllDetails(order);
+    }, [order])
+    
+
     return (
         <> 
             <div className="adm-home-wrapper">
@@ -32,29 +54,57 @@ const AdminHome = (props) => {
                     <div className="adm-record"> {/*TODO */}
                         <table className="adm-record-table" border={"2px solid black"}>
                             <thead>
-                                <tr>
-                                    <th>Date</th>
-                                    <th>Purpose</th>
-                                    <th>Time Out</th>
-                                    <th>Time In</th>
-                                    <th>Number of Days</th>
-                                </tr>
+                            <tr>
+                                <th className="sort-btn" onClick={handleOrder} style={{width: "13%"}}>
+                                    App No. &nbsp;&nbsp;
+                                    {order ? (
+                                        <i
+                                            className="fa-solid fa-caret-up fa-xs"
+                                            style={{ color: "#f0ece5" }}
+                                        ></i>
+                                    ) : (
+                                        <i
+                                            className="fa-solid fa-caret-down fa-xs"
+                                            style={{ color: "#f0ece5" }}
+                                        ></i>
+                                    )}
+                                </th>
+                                <th style={{width: "10%"}}>Student ID</th>
+                                <th style={{width: "13%"}}>Start Date</th>
+                                <th style={{width: "13%"}}>End Date</th>
+                                <th style={{width: "10%"}}>Reason</th>
+                                <th style={{width: "20%"}}>Leave Address</th>
+                                <th style={{width: "13%"}}>Work Days</th>
+                                <th style={{width: "13%"}}>Status</th>
+                            </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>dwdaw</td>
-                                    <td>dwdaw</td>
-                                    <td>dwdaw</td>
-                                    <td>dwdaw</td>
-                                    <td>dwdaw</td>
-                                </tr>
-                                <tr>
-                                    <td>dwdaw</td>
-                                    <td>dwdaw</td>
-                                    <td>dwdaw</td>
-                                    <td>dwdaw</td>
-                                    <td>dwdaw</td>
-                                </tr>
+                                {appData.map((e, index) => (
+                                    <tr key={index}>
+                                        <td>{e.app_no}</td>
+                                        <td>{e.student_id}</td>
+                                        <td>
+                                            {new Date(
+                                                e.start_date
+                                            ).toLocaleString("en-US", props.options)}
+                                        </td>
+                                        <td>
+                                            {new Date(
+                                                e.end_date
+                                            ).toLocaleString("en-US", props.options)}
+                                        </td>
+                                        <td>{e.reason}</td>
+                                        <td>{e.leave_addr}</td>
+                                        <td>{e.no_of_working_days}</td>
+                                        <td>      
+                                            <div
+                                                className="std-status_bg"
+                                                style={{ color: props.handleStatusColor(e.app_status),}}>
+                                                {e.app_status}
+                                            </div>
+                                        </td>
+                                    </tr>
+                                ))}
                             </tbody>
                         </table>
                     </div>
@@ -66,7 +116,9 @@ const AdminHome = (props) => {
 
 AdminHome.propTypes = {
     name: PropTypes.string.isRequired,
-    userID: PropTypes.string.isRequired
+    userID: PropTypes.string.isRequired,
+    options: PropTypes.string.isRequired,
+    handleStatusColor: PropTypes.func.isRequired
 }
 
 export default AdminHome;
