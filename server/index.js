@@ -18,6 +18,7 @@ app.get("/", (req, res) => {
 
 //used to import sub-routes
 app.use("/api/auth", require('./routes/auth'));
+app.use("/api/student", require('./routes/student'));
 
 app.listen(port, () => {
     console.log(`App listening on http://localhost:${port}`);

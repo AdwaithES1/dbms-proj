@@ -1,8 +1,10 @@
 import { Link } from "react-router-dom"
 import './WardenHome.css'
 import PropTypes from 'prop-types'
+import { useState } from "react"
 
 const WardenHome = (props) => {
+    const [hostel, setHostel] = useState("Hostel");
     return (
         <> 
             <div className="wrd-home-wrapper">
@@ -28,7 +30,7 @@ const WardenHome = (props) => {
                         </div>
                     </div>
 
-                    <span className="wrd-table-cap">{props.hostel} History</span> {/* hostelname instead of hostel */}
+                    <span className="wrd-table-cap">{hostel} History</span> {/* hostelname instead of hostel */}
                     <div className="wrd-record"> {/*TODO */}
                         <table className="wrd-record-table" border={"2px solid black"}>
                             <thead>

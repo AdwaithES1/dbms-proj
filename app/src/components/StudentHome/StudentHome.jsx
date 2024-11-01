@@ -7,32 +7,62 @@ import PropTypes from 'prop-types'
 
 const StudentHome = (props) => {
     const [modal, setModal] = useState(false);
+    const [appData, setAppData] = useState([]);
 
-    const fetchUser = async () => {
-        await axios.get("http://localhost:5000/api/student/home")
+
+    //DATE SETUP OPTIONS
+    const options = {
+        year: 'numeric',
+        month: 'short',
+        day: 'numeric',
+        hour: 'numeric',
+        minute: '2-digit',
+        hour12: true // Use 12-hour clock
+    };
+
+    // SET STATUS COLOR
+    const handleStatusColor = (s) => {
+        if (s === "Pending") return "#FFD700"; // Gold
+        else if (s === "Approved") return "#28A745"; // Success green
+        else if (s === "Declined") return "#DC3545"; // Danger red
+        else if (s === "On Time") return "#17A2B8"; // Info blue
+        else if (s === "Late") return "#FFC107"; // Warning yellow
+    };
+    
+
+    const fetchUser = async (userID) => { //used to fetch the application history
+
+        await axios.post("http://localhost:5000/api/student/fetchreq", { userID })
         .then(result => {
             console.log(result); //testing
+            setAppData(result.data);
         })
         .catch(err => console.error(err));
     }
+
     useEffect(() => {
-        fetchUser();
-    })
+        if (props.userID) {
+            fetchUser(props.userID);
+        }
+    }, [props.userID]);
     
     const toggleModal = () => {
         setModal(!modal);
+        fetchUser(props.userID);
     }
+
+
     return (
         <> 
             <div className="std-home-wrapper">
                 {modal && 
-                    <StudentModal toggleModal={toggleModal}/>
+                    <StudentModal toggleModal={toggleModal} userID={props.userID}/>
                 }
 
                 <div className="std-home-container flex">
                     <div className="std-header flex">
                         <img src="../../public/favicon.ico" width={"50px"}/>
-                        <div className="std-logout-btn flex">
+                        <div className="std-logout-btn flex" onClick={props.onLogout}>
                             <Link to="/" className="std-link">
                                     <i className="fa-solid fa-arrow-right-from-bracket"></i>
                                     <span>&nbsp;&nbsp;Log Out</span>
@@ -42,7 +72,7 @@ const StudentHome = (props) => {
                     <div className="std-navbar flex">
                         <div className="std-profile">
                             <div className="std-profile-content flex">
-                                <i className="fa-solid fa-user fa-2xl" style={{color: "#ffffff;"}}></i>
+                                <i className="fa-solid fa-user fa-2xl" style={{color: "#ffffff"}}></i>
                                 <div className="std-profile-text">
                                     <span><b>{props.name}</b></span><br />
                                     <span>{props.userID}</span>
@@ -60,28 +90,29 @@ const StudentHome = (props) => {
                         <table className="std-record-table" border={"2px solid black"}>
                             <thead>
                                 <tr>
-                                    <th>Date</th>
-                                    <th>Purpose</th>
-                                    <th>Time Out</th>
-                                    <th>Time In</th>
-                                    <th>Number of Days</th>
+                                    <th>App No.</th>
+                                    <th>Start Date</th>
+                                    <th>End Date</th>
+                                    <th>Reason</th>
+                                    <th>Working Days</th>
+                                    <th>Status</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>dwdaw</td>
-                                    <td>dwdaw</td>
-                                    <td>dwdaw</td>
-                                    <td>dwdaw</td>
-                                    <td>dwdaw</td>
-                                </tr>
-                                <tr>
-                                    <td>dwdaw</td>
-                                    <td>dwdaw</td>
-                                    <td>dwdaw</td>
-                                    <td>dwdaw</td>
-                                    <td>dwdaw</td>
-                                </tr>
+                                {appData.map((e, index) => (
+                                    <tr key={index}> {/* Wrap <td> elements in <tr> */}
+                                        <td>{e.app_no}</td>
+                                        <td>{new Date(e.start_date).toLocaleString('en-US', options )}</td>
+                                        <td>{new Date(e.end_date).toLocaleString('en-US', options )}</td>
+                                        <td>{e.reason}</td>
+                                        <td>{e.no_of_working_days}</td>
+                                        <td>
+                                            <div className="std-status_bg" style={{backgroundColor: handleStatusColor(e.app_status)}}>
+                                                {e.app_status}
+                                            </div>
+                                        </td>
+                                    </tr>
+                                ))}
                             </tbody>
                         </table>
                     </div>
@@ -93,7 +124,8 @@ const StudentHome = (props) => {
 
 StudentHome.propTypes = {
     name: PropTypes.string.isRequired,
-    userID: PropTypes.string.isRequired
+    userID: PropTypes.string.isRequired,
+    onLogout: PropTypes.func.isRequired
 }
 
 export default StudentHome;

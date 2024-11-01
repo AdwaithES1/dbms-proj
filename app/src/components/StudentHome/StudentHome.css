@@ -90,5 +90,11 @@
 
 .std-record-table tr {
     height: 2.5rem;
+}
 
+.std-status_bg {
+    width: 80%;
+    padding-block: 0.1rem;
+    border-radius: 15px;
+    margin: 0 auto;
 }

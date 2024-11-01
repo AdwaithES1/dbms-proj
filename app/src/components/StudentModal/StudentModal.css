@@ -42,7 +42,7 @@
     padding: 1.5rem;
 }
 
-.modal-form input {
+.modal-form input, textarea {
     width: 100%;
     height: 2rem;
     margin-top: 6px;
@@ -53,9 +53,15 @@
 
     background-color: #f0ece59a;
     color: #161A30;
+
+    padding-inline: 0.8rem;
 }
 
-.modal-form input:focus {
+.modal-form textarea {
+    padding-top: 10px;
+}
+
+.modal-form input:focus, textarea:focus {
     background-color: #F0ECE5;
     outline: 2px solid #F0ECE5;
     outline-offset: 2px;
@@ -64,11 +70,10 @@
 
 .modal-form #addr {
     height: 6rem;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
 }
 
-.modal-form input {
-    padding-inline: 0.8rem;
-}
 
 .checkbox-container {
     height: fit-content;
