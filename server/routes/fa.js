@@ -94,7 +94,7 @@ router.post("/fetchhistory", async (req, res) => {
             return res.status(500).json({ error: "Failed to fetch requests" });
         } else {
             console.log(result2);
-            return res.status(200).json(result2);
+            return res.status(200).json(result2); // SENDING THE SELECTED SQL OUTPUT AS RESPONSE
         }
 
     } catch(err) {

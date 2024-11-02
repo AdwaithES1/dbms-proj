@@ -40,6 +40,13 @@
     border-radius: 15px;
 }
 
+.wrd-hostel-profile {
+    background-color: #161A30;
+
+    padding: 2% 3%;
+    border-radius: 15px;
+}
+
 .wrd-profile-content {  
     height: fit-content;
     gap: 1rem;
