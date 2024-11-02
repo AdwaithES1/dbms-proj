@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react"
-import './StudentModal.css'
-import axios from "axios"
-import PropTypes from 'prop-types'
+import { useEffect, useState } from "react";
+import './StudentModal.css';
+import axios from "axios";
+import PropTypes from 'prop-types';
 
 const StudentModal = (props) => {
     const [workDays, setWorkDays] = useState(null);
@@ -10,17 +10,28 @@ const StudentModal = (props) => {
     const [startDate, setStartDate] = useState(null);
     const [endDate, setEndDate] = useState(null);
     const [minDate, setMinDate] = useState(null);
+    const [minEndDate, setMinEndDate] = useState(null); // State for minimum end date
 
     useEffect(() => {
         const now = new Date();
         const year = now.getFullYear();
-        const month = String(now.getMonth() + 1).padStart(2, '0'); // Months are zero-indexed
+        const month = String(now.getMonth() + 1).padStart(2, '0');
         const day = String(now.getDate()).padStart(2, '0');
         const hours = String(now.getHours()).padStart(2, '0');
         const minutes = String(now.getMinutes()).padStart(2, '0');
         const formattedNow = `${year}-${month}-${day}T${hours}:${minutes}`;
         setMinDate(formattedNow);
     }, []);
+
+    useEffect(() => {
+        if (startDate) {
+            const start = new Date(startDate);
+            start.setDate(start.getDate() + 1); // Add 1 day
+            setMinEndDate(start.toISOString().slice(0, 16)); // Format to YYYY-MM-DDTHH:MM
+        } else {
+            setMinEndDate(null); // Reset if startDate is not set
+        }
+    }, [startDate]);
 
     const createReq = async (e) => {
         e.preventDefault();
@@ -38,12 +49,9 @@ const StudentModal = (props) => {
             if (result) {
                 props.toggleModal();   
             }
-
-        }
-        catch (err) {
+        } catch (err) {
             console.log(err);
         }
-
     }
 
     return (
@@ -57,7 +65,7 @@ const StudentModal = (props) => {
                             </button>
                         </div>
                         <div className="modal-form">
-                            <form  method="POST" onSubmit={createReq}>
+                            <form method="POST" onSubmit={createReq}>
 
                                 <label htmlFor="addr">Address</label> <br/>
                                 <textarea id="addr" name="addr" placeholder="Enter your Address" minLength={10} maxLength={200} onChange={(e) => setAddr(e.target.value)} rows={5} required></textarea> <br/><br/>
@@ -67,9 +75,9 @@ const StudentModal = (props) => {
 
                                 <label htmlFor="startdate">Start Date</label> <br/>
                                 <input type="datetime-local" id="startdate" name="startdate" onChange={(e) => setStartDate(e.target.value)} min={minDate} required></input> <br/><br/>
-                            
+
                                 <label htmlFor="enddate">End Date</label> <br/>
-                                <input type="datetime-local" id="enddate" name="enddate" onChange={(e) => setEndDate(e.target.value)} min={minDate}required></input> <br/><br/>
+                                <input type="datetime-local" id="enddate" name="enddate" onChange={(e) => setEndDate(e.target.value)} min={minEndDate} required></input> <br/><br/>
 
                                 <label htmlFor="workDays">Number Of Working Days</label> <br/>
                                 <input type="number" id="workDays" name="workDays" placeholder="Enter Number Of Working Days" maxLength={2} onChange={(e) => setWorkDays(e.target.value)} required></input> <br/><br/>
