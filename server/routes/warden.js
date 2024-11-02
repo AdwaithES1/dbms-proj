@@ -9,25 +9,31 @@ router.post("/fetchcurr", async (req, res) => {
     console.log("Warden ID FROM warden.js: ", wardenID); //testing
     try {
 
-        // FETCHING STUDENT NAME UNDER THE LOGGED IN WARDEN
-        const {data: result1, error: err1 } = await db
-        .from('student_warden')
-        .select('student_id')
+        // FETCHING HOSTEL NAME UNDER THE LOGGED IN WARDEN
+        const {data: hostelName, error: err1 } = await db
+        .from('warden')
+        .select('hostel_name')
         .eq('warden_id', wardenID);
+
+        // FETCHING STUDENT NAME UNDER THE SELECTED HOSTEL
+        const {data: result1, error: err2 } = await db
+        .from('student')
+        .select('student_id')
+        .eq('hostel_name', hostelName[0].hostel_name);
 
         const students = result1.map(e => e.student_id);
         console.log("Students: ", students); //testing
 
         // FETCHING STUDENT DETAILS OF THE ABOVE SELECTED STUDENTS 
-        const { data: result2, error: err2 } = await db
+        const { data: result2, error: err3 } = await db
         .from('application')
         .select('app_no, student_id, start_date, end_date, reason, leave_addr, app_status')
         .in('student_id', students)
         .neq('app_status', 'Pending')
         .order('start_date', {ascending: order});
 
-        if (err1 || err2) {
-            console.error("Error fetching applications:", err1 || err2);
+        if (err1 || err2 || err3) {
+            console.error("Error fetching applications:", err1 || err2 || err3);
             return res.status(500).json({ error: "Failed to fetch requests" });
         } else {
             console.log(result2);
