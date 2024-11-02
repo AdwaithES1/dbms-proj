@@ -4,6 +4,7 @@ import LoginPage from './components/LoginPage/LoginPage'
 import StudentHome from "./components/StudentHome/StudentHome"
 import WardenHome from "./components/WardenHome/WardenHome"
 import AdminHome from "./components/AdminHome/AdminHome"
+import GateHome from "./components/GateHome/GateHome"
 
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import { useState } from "react"
@@ -30,11 +31,12 @@ function App() {
     
     // SET STATUS COLOR
     const handleStatusColor = (s) => {
-        if (s === "Pending") return "#FEC72E"; // Gold
-        else if (s === "Approved") return "#00D280"; // Success green
-        else if (s === "Rejected") return "#F9281B"; // Danger red
-        else if (s === "Late") return "E98854"; // Warning yellow
-        else if (s === "Expired") return "908E90"; // Info blue
+        if (s === "Pending") return "#FEC72E";
+        else if (s === "Approved") return "#00D280";
+        else if (s === "Rejected") return "#F9281B";
+        else if (s === "Late") return "#E98854"; 
+        else if (s === "Expired") return "#908E90"; 
+        else if (s === "On Leave") return "#0D99FF"; 
     };
 
     //DATE SETUP OPTIONS
@@ -58,6 +60,7 @@ function App() {
                     options={options} />}/>
                     <Route exact path="/warden/home" element={<WardenHome  name={name} userID={userID} onLogOut={handleLogOut} handleStatusColor={handleStatusColor} options={options}/>}/>
                     <Route exact path="/admin/home" element={<AdminHome  name={name} userID={userID} onLogOut={handleLogOut} handleStatusColor={handleStatusColor} options={options}/>}/>
+                    <Route exact path="/gate/home" element={<GateHome  name={name} userID={userID} onLogOut={handleLogOut} handleStatusColor={handleStatusColor} options={options}/>}/>
                 </Routes>
             </Router>
 

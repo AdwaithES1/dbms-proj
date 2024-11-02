@@ -2,8 +2,8 @@ import { Link } from "react-router-dom"
 import './FAHome.css'
 import PropTypes from 'prop-types'
 import { useState } from "react"
-import CurrentRequests from "./CurrentRequests/CurrentRequests"
-import StudentHistory from "./StudentHistory/StudentHistory"
+import CurrentRequests from "./CurrentRequests"
+import StudentHistory from "./StudentHistory"
 
 const FAHome = (props) => {
     const [table1Index, setTable1Index] = useState(true);
@@ -63,7 +63,7 @@ const FAHome = (props) => {
 FAHome.propTypes = {
     name: PropTypes.string.isRequired,
     userID: PropTypes.string.isRequired,
-    options: PropTypes.string.isRequired,
+    options: PropTypes.object.isRequired,
     handleStatusColor: PropTypes.func.isRequired
 }
 

@@ -6,4 +6,19 @@ const supabaseAnonKey = process.env.SUPABASE_ANON_KEY;
 
 const supabase = conn.createClient(supabaseUrl, supabaseAnonKey);
 
+// Test connection
+async function testConnection() {
+    const { data, error } = await supabase
+        .from('application')
+        .select('app_no');
+
+    if (error) {
+        console.error("Connection failed:", error);
+    } else {
+        console.log("Successfully Connected To Database!");
+    }
+}
+
+testConnection();
+
 module.exports = supabase;

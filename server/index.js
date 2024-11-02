@@ -22,6 +22,7 @@ app.use("/api/student", require('./routes/student'));
 app.use("/api/fa", require('./routes/fa'));
 app.use("/api/warden", require('./routes/warden'));
 app.use("/api/admin", require('./routes/admin'));
+app.use("/api/gate", require('./routes/gate'));
 
 app.listen(port, () => {
     console.log(`App listening on http://localhost:${port}`);

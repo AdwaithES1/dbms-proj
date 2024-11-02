@@ -140,7 +140,7 @@ const WardenHome = (props) => {
 WardenHome.propTypes = {
     name: PropTypes.string.isRequired,
     userID: PropTypes.string.isRequired,
-    options: PropTypes.string.isRequired,
+    options: PropTypes.object.isRequired,
     handleStatusColor: PropTypes.func.isRequired
 }
 

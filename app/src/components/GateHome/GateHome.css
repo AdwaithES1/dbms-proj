@@ -1,0 +1,116 @@
+.g-home-container {
+    flex-direction: column;
+    
+    width: 80%;
+    height: fit-content;
+    margin: 0 auto;
+    padding-top: 3rem;
+    gap: 4rem;
+
+    font-size: clamp(0.3rem, 3vw, 0.8rem);
+}
+
+.g-header {
+    height: fit-content;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.g-logout-btn {
+    background-color: rgb(151, 9, 9);
+    width: clamp(80px, 10vw ,120px);
+    height: clamp(15px, 10vw, 40px);
+
+    border-radius: 8px;
+    font-weight: 600;
+}
+
+
+.g-navbar {
+    justify-content: space-between;
+    height: fit-content;
+    width: 100%;
+}
+
+.g-profile {
+    background-color: #161A30;
+
+    padding: 2% 3%;
+    border-radius: 15px;
+}
+
+.g-profile-content {  
+    height: fit-content;
+    gap: 1rem;
+}
+
+.g-output {
+    width: 100%;
+}
+
+
+.g-record {
+    background-color: #161A30;
+    color: #F0ECE5;
+    width: 100%;
+    height: fit-content;
+
+    border-top-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.g-switch-btns {
+    height: fit-content;
+    width: fit-content;
+    
+    margin-left: 0.5px;
+    gap: 1px;
+}
+
+.g-in_campus, .g-out_campus, .g-exp_apps {
+    position: relative;
+    background-color: #161A30;
+    width: 200px;
+    height: 2.5rem;
+
+    text-align: center;
+    font-weight: 600;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}   
+
+.g-in_campus:hover, .g-out_campus:hover, .g-exp_apps:hover {
+    cursor: pointer;
+}
+
+.g-in_campus {
+    z-index: 2;
+    padding-right: 20px;
+}
+
+.g-out_campus, .g-exp_apps {
+    margin-left: -20px;
+    padding-left: 20px;
+}
+
+.g-record {
+    margin-left: 0.5px;
+}
+
+.g-record-table {
+    width: 100%;
+
+    font-size: 1rem;
+    text-align: center;
+}
+
+.g-record-table tr {
+    height: 2.5rem;
+
+}
