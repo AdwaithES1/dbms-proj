@@ -9,6 +9,7 @@ const StudentHome = (props) => {
     const [modal, setModal] = useState(false);
     const [appData, setAppData] = useState([]);
     const [order, setOrder] = useState(true); //if order true, then sorting in ascending order
+    const [disableBtn, setDisableBtn] = useState(false);
 
     // SET SORTING ORDER
     const handleOrder = () => {
@@ -30,11 +31,28 @@ const StudentHome = (props) => {
             .catch((err) => console.error(err));
     };
 
+    const checkPendingReq = async (userID) => {
+        await axios
+        .post("http://localhost:5000/api/student/checkpending", {
+            userID: userID,
+        })
+        .then(result => {
+            console.log(result);
+            setDisableBtn(result.data)
+        })
+    }
+
     useEffect(() => {
         if (props.userID) {
             fetchUser(props.userID, order);
         }
     }, [props.userID, order]);
+
+    useEffect(() => {
+        if (props.userID) {
+            checkPendingReq(props.userID);
+        }
+    }, [props.userID]);
 
     // Disable body scroll when modal is open
     useEffect(() => {
@@ -53,6 +71,7 @@ const StudentHome = (props) => {
     const toggleModal = () => {
         setModal(!modal);
         fetchUser(props.userID);
+        checkPendingReq(props.userID);
     };
 
     return (
@@ -94,10 +113,10 @@ const StudentHome = (props) => {
                                 </div>
                             </div>
                         </div>
-                        <div className="std-req-btn flex" onClick={toggleModal}>
+                        <button className="std-req-btn flex" onClick={toggleModal} disabled={disableBtn}>
                             <i className="fa-solid fa-plus fa-sm"></i>
                             <span>New Request</span>
-                        </div>
+                        </button>
                     </div>
 
                     <span className="std-table-cap">Your Requests</span>

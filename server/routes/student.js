@@ -65,4 +65,38 @@ router.post("/fetchreq", async (req, res) => {
 
 })
 
+// ROUTE 3: api/student/checkpending
+router.post("/checkpending", async (req, res) => {
+    const { userID } = req.body;
+    console.log("userid", userID); //testing
+
+    // FETCHING FROM DATABASE
+    try {
+        const { data, error } = await db
+        .from('application')
+        .select('*')
+        .eq('student_id', userID)
+        .eq('app_status', 'Pending');
+
+        console.log(data);
+
+        if (error) {
+            console.error("Error fetching applications:", error);
+            return res.status(500).json({ error: "Failed to fetch requests" });
+        } else {
+            console.log("Length Of the Data From DB: ", data.length);
+            if (data.length === 0) {
+                return res.status(200).send(false);
+            } else {
+                return res.status(200).send(true);
+            }
+        }
+
+    } catch (err) {
+        console.error("Unexpected error:", err);
+        return res.status(500).json({ error: "An unexpected error occurred" });
+    }
+
+})
+
 module.exports = router;

@@ -47,6 +47,7 @@
 }
 
 .std-req-btn {
+    color: #F0ECE5;
     background-color: #161A30;
     width: clamp(100px, 20vw ,150px);
     height: clamp(15px, 10vw, 40px);
@@ -56,8 +57,14 @@
     font-weight: 600;
 }
 
+
 .std-req-btn:hover {
     cursor: pointer;
+    background-color: #343a5e;
+}
+
+.std-req-btn:disabled {
+    cursor: not-allowed;
     background-color: #343a5e;
 }
 
