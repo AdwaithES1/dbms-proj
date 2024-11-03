@@ -76,7 +76,7 @@ router.post("/checkpending", async (req, res) => {
         .from('application')
         .select('*')
         .eq('student_id', userID)
-        .eq('app_status', 'Pending');
+        .in('app_status', ['Pending', 'On Leave', 'Approved']);
 
         console.log(data);
 

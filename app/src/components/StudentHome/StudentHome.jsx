@@ -120,7 +120,7 @@ const StudentHome = (props) => {
                     </div>
 
                     <span className="std-table-cap">Your Requests</span>
-                    { disableBtn && <div className="std-error-text">*Cannot create a new request if you currenlty have a pending request</div>}
+                    { disableBtn && <div className="std-error-text">*Cannot create a new request if you currenlty have a pending/approved request or your are currenlty on leave</div>}
                     <div className="std-record">
                         {/*TODO */}
                         <table
