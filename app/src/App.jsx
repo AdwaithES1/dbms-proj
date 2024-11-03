@@ -65,7 +65,7 @@ function App() {
             </Router>
 
             <footer>
-                <span style={{color: "#161A30"}}>&#169;&nbsp;Leave Management System &nbsp;<a href="https://github.com/nakul-krishnakumar/dbms-proj" target="_blank"><i className="fa-brands fa-github fa-xl github-icon" style={{color: "#161a3"}}></i></a></span>
+                <span style={{color: "#161A30"}}>&#169;&nbsp;<b>PlsLetMeGo</b> - Leave Management System &nbsp;<a href="https://github.com/nakul-krishnakumar/dbms-proj" target="_blank"><i className="fa-brands fa-github fa-xl github-icon" style={{color: "#161a3"}}></i></a></span>
             </footer>
         </div>
     )
