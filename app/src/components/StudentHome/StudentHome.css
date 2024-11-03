@@ -68,6 +68,11 @@
     background-color: #343a5e;
 }
 
+.std-error-text {
+    color: red;
+    font-size: medium;
+}
+
 .std-table-cap {
     color: #161A30;
     font-size: large;
