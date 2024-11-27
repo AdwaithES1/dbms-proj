@@ -80,7 +80,7 @@ const ExpiredApplications = (props) => {
 }
 
 ExpiredApplications.propTypes = {
-    options: PropTypes.string.isRequired,
+    options: PropTypes.object.isRequired,
     handleStatusColor: PropTypes.func.isRequired
 }
 
