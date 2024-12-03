@@ -9,7 +9,7 @@ const AdminHome = (props) => {
     const [appData, setAppData] = useState([]);
 
     const fetchAllDetails = async (order) => {
-        await axios.post("http://localhost:5000/api/admin/fetchall", { order: order })
+        await axios.post("https://server-l1f2.onrender.com/api/admin/fetchall", { order: order })
         .then(result => {
             console.log(result);
             setAppData(result.data);

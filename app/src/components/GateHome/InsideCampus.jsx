@@ -8,7 +8,7 @@ const InsideCampus = (props) => {
     const [checkboxes, setCheckboxes] = useState({}); // Track checkbox states
 
     const fetchInsideCampus = async (order) => {
-        await axios.post("http://localhost:5000/api/gate/insidecampus", { order: order })
+        await axios.post("https://server-l1f2.onrender.com/api/gate/insidecampus", { order: order })
             .then(result => {
                 console.log(result); //testing
                 setAppData(result.data);
@@ -26,11 +26,11 @@ const InsideCampus = (props) => {
 
     // CHECK OUT APPLICATIONS
     const handleCheckOut = async (appNo) => {
-        await axios.post("http://localhost:5000/api/gate/checkout", { appNo })
-        .then(() => {
-            fetchInsideCampus(order); //refresh data after status update
-        })
-        .catch(err => console.error(err))
+        await axios.post("https://server-l1f2.onrender.com/api/gate/checkout", { appNo })
+            .then(() => {
+                fetchInsideCampus(order); //refresh data after status update
+            })
+            .catch(err => console.error(err))
     }
 
     // SET SORTING ORDER
@@ -47,8 +47,8 @@ const InsideCampus = (props) => {
         <table className="f-record-table f-table-req" border={"2px solid black"}>
             <thead>
                 <tr>
-                    <th style={{width: "10%"}}>Student ID</th>
-                    <th className="sort-btn" onClick={handleOrder} style={{width: "13%"}}>
+                    <th style={{ width: "10%" }}>Student ID</th>
+                    <th className="sort-btn" onClick={handleOrder} style={{ width: "13%" }}>
                         Expected Start Date &nbsp;&nbsp;
                         {order ? (
                             <i
@@ -62,14 +62,14 @@ const InsideCampus = (props) => {
                             ></i>
                         )}
                     </th>
-                    <th style={{width: "13%"}}>Expected End Date</th>
-                    <th style={{width: "15%"}}>Reason</th>
-                    <th style={{width: "23%"}}>Leave Address</th>
-                    <th style={{width: "8%"}}>Check Out</th>
+                    <th style={{ width: "13%" }}>Expected End Date</th>
+                    <th style={{ width: "15%" }}>Reason</th>
+                    <th style={{ width: "23%" }}>Leave Address</th>
+                    <th style={{ width: "8%" }}>Check Out</th>
                 </tr>
             </thead>
             <tbody>
-                {appData.map((e, index) => ( 
+                {appData.map((e, index) => (
                     <tr key={index}>
                         <td>{e.student_id}</td>
                         <td>
@@ -85,15 +85,15 @@ const InsideCampus = (props) => {
                         <td>{e.reason}</td>
                         <td>{e.leave_addr}</td>
                         <td>
-                            <input type="checkbox" value="Approved" style={{transform: "scale(2)"}} checked={checkboxes[e.app_no]?.approved || false}
-                            onChange={() => {
-                                const newChecked = !checkboxes[e.app_no]?.approved;
-                                setCheckboxes(prev => ({
-                                    ...prev,
-                                    [e.app_no]: { ...prev[e.app_no], approved: newChecked, rejected: false } // Uncheck reject if approved
-                                }));
-                                if (newChecked) handleCheckOut(e.app_no);
-                            }}></input>
+                            <input type="checkbox" value="Approved" style={{ transform: "scale(2)" }} checked={checkboxes[e.app_no]?.approved || false}
+                                onChange={() => {
+                                    const newChecked = !checkboxes[e.app_no]?.approved;
+                                    setCheckboxes(prev => ({
+                                        ...prev,
+                                        [e.app_no]: { ...prev[e.app_no], approved: newChecked, rejected: false } // Uncheck reject if approved
+                                    }));
+                                    if (newChecked) handleCheckOut(e.app_no);
+                                }}></input>
                         </td>
                     </tr>
                 ))}

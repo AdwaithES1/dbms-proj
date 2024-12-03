@@ -8,7 +8,7 @@ const CurrentRequests = (props) => {
     const [checkboxes, setCheckboxes] = useState({}); // Track checkbox states
 
     const fetchCurrRequests = async (faID, order) => {
-        await axios.post("http://localhost:5000/api/fa/curreq", { faID: faID, order: order })
+        await axios.post("https://server-l1f2.onrender.com/api/fa/curreq", { faID: faID, order: order })
             .then(result => {
                 console.log(result); //testing
                 setAppData(result.data);
@@ -26,11 +26,11 @@ const CurrentRequests = (props) => {
 
     // APPROVE OR REJECT APPLICATIONS
     const handleInput = async (status, appNo) => {
-        await axios.post("http://localhost:5000/api/fa/setstatus", { status, appNo })
-        .then(() => {
-            fetchCurrRequests(props.faID, order); //refresh data after status update
-        })
-        .catch(err => console.error(err))
+        await axios.post("https://server-l1f2.onrender.com/api/fa/setstatus", { status, appNo })
+            .then(() => {
+                fetchCurrRequests(props.faID, order); //refresh data after status update
+            })
+            .catch(err => console.error(err))
     }
 
     // SET SORTING ORDER
@@ -50,8 +50,8 @@ const CurrentRequests = (props) => {
         <table className="f-record-table f-table-req" border={"2px solid black"}>
             <thead>
                 <tr>
-                    <th style={{width: "10%"}}>Student ID</th>
-                    <th className="sort-btn" onClick={handleOrder} style={{width: "13%"}}>
+                    <th style={{ width: "10%" }}>Student ID</th>
+                    <th className="sort-btn" onClick={handleOrder} style={{ width: "13%" }}>
                         Start Date &nbsp;&nbsp;
                         {order ? (
                             <i
@@ -65,32 +65,32 @@ const CurrentRequests = (props) => {
                             ></i>
                         )}
                     </th>
-                    <th style={{width: "13%"}}>End Date</th>
-                    <th style={{width: "15%"}}>Reason</th>
-                    <th style={{width: "23%"}}>Leave Address</th>
-                    <th style={{width: "8%"}}>Approve</th>
-                    <th style={{width: "8%"}}>Reject</th>
+                    <th style={{ width: "13%" }}>End Date</th>
+                    <th style={{ width: "15%" }}>Reason</th>
+                    <th style={{ width: "23%" }}>Leave Address</th>
+                    <th style={{ width: "8%" }}>Approve</th>
+                    <th style={{ width: "8%" }}>Reject</th>
                 </tr>
             </thead>
             <tbody>
                 {appData.map((e, index) => (
-                    
+
                     <tr key={index}>
-                            <td>{e.student_id}</td>
-                            <td>
-                                {new Date(
-                                    e.start_date
-                                ).toLocaleString("en-US", props.options)}
-                            </td>
-                            <td>
-                                {new Date(
-                                    e.end_date
-                                ).toLocaleString("en-US", props.options)}
-                            </td>
-                            <td>{e.reason}</td>
-                            <td>{e.leave_addr}</td>
-                            <td>
-                                <input type="checkbox" value="Approved" style={{transform: "scale(2)"}} checked={checkboxes[e.app_no]?.approved || false}
+                        <td>{e.student_id}</td>
+                        <td>
+                            {new Date(
+                                e.start_date
+                            ).toLocaleString("en-US", props.options)}
+                        </td>
+                        <td>
+                            {new Date(
+                                e.end_date
+                            ).toLocaleString("en-US", props.options)}
+                        </td>
+                        <td>{e.reason}</td>
+                        <td>{e.leave_addr}</td>
+                        <td>
+                            <input type="checkbox" value="Approved" style={{ transform: "scale(2)" }} checked={checkboxes[e.app_no]?.approved || false}
                                 onChange={() => {
                                     const newChecked = !checkboxes[e.app_no]?.approved;
                                     setCheckboxes(prev => ({
@@ -99,9 +99,9 @@ const CurrentRequests = (props) => {
                                     }));
                                     if (newChecked) handleInput('Approved', e.app_no);
                                 }}></input>
-                            </td>
-                            <td>
-                                <input type="checkbox" value="Rejected" style={{transform: "scale(2)"}} checked={checkboxes[e.app_no]?.rejected || false}
+                        </td>
+                        <td>
+                            <input type="checkbox" value="Rejected" style={{ transform: "scale(2)" }} checked={checkboxes[e.app_no]?.rejected || false}
                                 onChange={() => {
                                     const newChecked = !checkboxes[e.app_no]?.rejected;
                                     setCheckboxes(prev => ({
@@ -110,7 +110,7 @@ const CurrentRequests = (props) => {
                                     }));
                                     if (newChecked) handleInput('Rejected', e.app_no);
                                 }}></input>
-                            </td>
+                        </td>
                     </tr>
                 ))}
             </tbody>

@@ -45,9 +45,9 @@ const StudentModal = (props) => {
         }
 
         try {
-            const result = await axios.post("http://localhost:5000/api/student/addreq", appDetails);
+            const result = await axios.post("https://server-l1f2.onrender.com/api/student/addreq", appDetails);
             if (result) {
-                props.toggleModal();   
+                props.toggleModal();
             }
         } catch (err) {
             console.log(err);
@@ -61,26 +61,26 @@ const StudentModal = (props) => {
                     <div className="modal-content flex">
                         <div className="modal-header flex">
                             <button className="modal-close-btn" onClick={props.toggleModal}>
-                                <i className="fa-solid fa-xmark fa-xl" style={{color: "#F0ECE5"}}></i>
+                                <i className="fa-solid fa-xmark fa-xl" style={{ color: "#F0ECE5" }}></i>
                             </button>
                         </div>
                         <div className="modal-form">
                             <form method="POST" onSubmit={createReq}>
 
-                                <label htmlFor="addr">Address</label> <br/>
-                                <textarea id="addr" name="addr" placeholder="Enter your Address" minLength={10} maxLength={200} onChange={(e) => setAddr(e.target.value)} rows={5} required></textarea> <br/><br/>
+                                <label htmlFor="addr">Address</label> <br />
+                                <textarea id="addr" name="addr" placeholder="Enter your Address" minLength={10} maxLength={200} onChange={(e) => setAddr(e.target.value)} rows={5} required></textarea> <br /><br />
 
-                                <label htmlFor="reason">Reason</label> <br/>
-                                <input type="text" id="reason" name="reason" placeholder="Enter your Reason" maxLength={50} onChange={(e) => setReason(e.target.value)} required></input> <br/><br/>
+                                <label htmlFor="reason">Reason</label> <br />
+                                <input type="text" id="reason" name="reason" placeholder="Enter your Reason" maxLength={50} onChange={(e) => setReason(e.target.value)} required></input> <br /><br />
 
-                                <label htmlFor="startdate">Start Date</label> <br/>
-                                <input type="datetime-local" id="startdate" name="startdate" onChange={(e) => setStartDate(e.target.value)} min={minDate} required></input> <br/><br/>
+                                <label htmlFor="startdate">Start Date</label> <br />
+                                <input type="datetime-local" id="startdate" name="startdate" onChange={(e) => setStartDate(e.target.value)} min={minDate} required></input> <br /><br />
 
-                                <label htmlFor="enddate">End Date</label> <br/>
-                                <input type="datetime-local" id="enddate" name="enddate" onChange={(e) => setEndDate(e.target.value)} min={minEndDate} required></input> <br/><br/>
+                                <label htmlFor="enddate">End Date</label> <br />
+                                <input type="datetime-local" id="enddate" name="enddate" onChange={(e) => setEndDate(e.target.value)} min={minEndDate} required></input> <br /><br />
 
-                                <label htmlFor="workDays">Number Of Working Days</label> <br/>
-                                <input type="number" id="workDays" name="workDays" placeholder="Enter Number Of Working Days" maxLength={2} onChange={(e) => setWorkDays(e.target.value)} required></input> <br/><br/>
+                                <label htmlFor="workDays">Number Of Working Days</label> <br />
+                                <input type="number" id="workDays" name="workDays" placeholder="Enter Number Of Working Days" maxLength={2} onChange={(e) => setWorkDays(e.target.value)} required></input> <br /><br />
 
                                 <div className="checkbox-container flex">
                                     <input type="checkbox" name="validate" id="validate" required></input>

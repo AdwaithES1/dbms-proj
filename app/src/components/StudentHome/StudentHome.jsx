@@ -20,7 +20,7 @@ const StudentHome = (props) => {
         //used to fetch the application history
 
         await axios
-            .post("http://localhost:5000/api/student/fetchreq", {
+            .post("https://server-l1f2.onrender.com/api/student/fetchreq", {
                 userID: userID,
                 order: order,
             })
@@ -33,13 +33,13 @@ const StudentHome = (props) => {
 
     const checkPendingReq = async (userID) => {
         await axios
-        .post("http://localhost:5000/api/student/checkpending", {
-            userID: userID,
-        })
-        .then(result => {
-            console.log(result);
-            setDisableBtn(result.data)
-        })
+            .post("https://server-l1f2.onrender.com/api/student/checkpending", {
+                userID: userID,
+            })
+            .then(result => {
+                console.log(result);
+                setDisableBtn(result.data)
+            })
     }
 
     useEffect(() => {
@@ -120,7 +120,7 @@ const StudentHome = (props) => {
                     </div>
 
                     <span className="std-table-cap">Your Requests</span>
-                    { disableBtn && <div className="std-error-text">*Cannot create a new request if you currently have a pending/approved request or you are currenlty on leave</div>}
+                    {disableBtn && <div className="std-error-text">*Cannot create a new request if you currently have a pending/approved request or you are currenlty on leave</div>}
                     <div className="std-record">
                         {/*TODO */}
                         <table
@@ -169,7 +169,7 @@ const StudentHome = (props) => {
                                         <td>
                                             <div
                                                 className="std-status_bg"
-                                                style={{ color: props.handleStatusColor(e.app_status)}}>
+                                                style={{ color: props.handleStatusColor(e.app_status) }}>
                                                 {e.app_status}
                                             </div>
                                         </td>

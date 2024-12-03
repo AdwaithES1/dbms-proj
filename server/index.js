@@ -7,7 +7,9 @@ const app = express();
 
 // MIDDLEWARES
 app.use(express.json()); //used parse incoming request send by client
-app.use(cors());
+app.use(cors({
+    origin: 'https://app-ny4c.onrender.com',
+}));
 
 port = process.env.PORT || 5000;
 

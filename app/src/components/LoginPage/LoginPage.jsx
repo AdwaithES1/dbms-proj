@@ -1,5 +1,5 @@
 import { useState } from "react"
-import axios from "axios" 
+import axios from "axios"
 import './LoginPage.css'
 import { useNavigate } from "react-router-dom"
 import PropTypes from 'prop-types'
@@ -20,21 +20,21 @@ function LoginPage(props) {
         }
 
         try {
-            await axios.post("http://localhost:5000/api/auth/login", creds)
-            .then(result => {
-                console.log(result);
-                if (result.data.match === true) {
+            await axios.post("https://server-l1f2.onrender.com/api/auth/login", creds)
+                .then(result => {
+                    console.log(result);
+                    if (result.data.match === true) {
 
-                    props.handleCred(result.data.username, userID);
+                        props.handleCred(result.data.username, userID);
 
-                    navigate(`/${result.data.type}/home`);
+                        navigate(`/${result.data.type}/home`);
 
-                    console.log(result); //testing
-                } else {
-                    setErr("* Invalid Credentials");
-                }
-            })
-            .catch(err => console.error(err))
+                        console.log(result); //testing
+                    } else {
+                        setErr("* Invalid Credentials");
+                    }
+                })
+                .catch(err => console.error(err))
 
         }
         catch (err) {
@@ -50,11 +50,11 @@ function LoginPage(props) {
                         <h4>Enter your credentials</h4>
 
                         <form method="POST" onSubmit={checkCreds}>
-                            <label htmlFor="username">Username: </label><br/>
-                            <input type="text" id="username" name="username" placeholder="Enter your username" onChange={(event) => setUserID(event.target.value)}/><br/><br/>
+                            <label htmlFor="username">Username: </label><br />
+                            <input type="text" id="username" name="username" placeholder="Enter your username" onChange={(event) => setUserID(event.target.value)} /><br /><br />
 
-                            <label htmlFor="password">Password: </label><br/>
-                            <input type="password" id="password" name="password" placeholder="Enter your password" onChange={(event) => setPword(event.target.value)}/><br/><br/>
+                            <label htmlFor="password">Password: </label><br />
+                            <input type="password" id="password" name="password" placeholder="Enter your password" onChange={(event) => setPword(event.target.value)} /><br /><br />
 
                             <div className="err-box">
                                 {err}
