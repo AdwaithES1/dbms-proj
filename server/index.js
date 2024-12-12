@@ -6,7 +6,7 @@ require('dotenv').config();
 const app = express();
 
 // MIDDLEWARES
-app.use(express.json()); //used parse incoming request send by client
+app.use(express.json()); //used to parse incoming request send by client
 app.use(cors({
     origin: 'https://app-ny4c.onrender.com',
 }));

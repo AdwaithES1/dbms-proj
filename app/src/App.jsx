@@ -9,6 +9,14 @@ import GateHome from "./components/GateHome/GateHome"
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import { useState } from "react"
 
+alert(`Credentials for testing the app:
+    Student = { user: nakul , pass: 12345 }
+    Faculty = { user: FAC0001 , pass: anjali123 }
+    Warden  = { user: WRD0001 , pass: john123 }
+    Gate = { user: gate , pass: gate123}
+    Admin = { user: admin , pass: admin123 }`
+)
+
 function App() {
     const [name, setName] = useState(localStorage.getItem("name") || "Username");
     const [userID, setUserID] = useState(localStorage.getItem("userID") || "202XBXXABCD");
