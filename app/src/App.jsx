@@ -10,7 +10,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import { useState } from "react"
 
 alert(`Credentials for testing the app:
-    Student = { user: nakul , pass: 12345 }
+    Student = { user: 2023BCS0010 , pass: 12345 }
     Faculty = { user: FAC0001 , pass: anjali123 }
     Warden  = { user: WRD0001 , pass: john123 }
     Gate = { user: gate , pass: gate123}
