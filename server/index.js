@@ -8,7 +8,7 @@ const app = express();
 // MIDDLEWARES
 app.use(express.json()); //used to parse incoming request send by client
 app.use(cors({
-    origin: 'https://app-ny4c.onrender.com',
+    origin: 'https://plsletmego.onrender.com',
 }));
 
 port = process.env.PORT || 5000;
